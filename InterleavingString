@@ -1,0 +1,96 @@
+package com.string;
+
+import java.util.Scanner;
+
+public class InterleavingString {
+	
+	public static Scanner sc=new Scanner(System.in);
+	 static String firstInput =new String();
+     static String secondInput=new String();
+	 static String thirdInput=new String();
+			
+
+	public static void main(String[] args) {
+		
+	    getInput();
+	    checkInterleavingString();
+	
+		
+	}
+
+	private static void checkInterleavingString() {
+		
+		int length3=thirdInput.length();
+		int length2=secondInput.length();
+		int length1=firstInput.length();
+		int i=0,j=0,k=0,count1=0,count2=0;
+		boolean flag1=false,flag2=false;
+		
+		while(i<length3)
+		{
+			if(thirdInput.charAt(i)==firstInput.charAt(j) || thirdInput.charAt(i)==secondInput.charAt(k))
+			{
+				if(thirdInput.charAt(i)==firstInput.charAt(j))
+				{
+					
+					i++;
+					j++;
+					count1++;
+					
+					if(count1==length1)
+					{
+						flag1=true;
+						j=0;
+					}
+					
+				}
+				
+			   
+				   if(thirdInput.charAt(i)==secondInput.charAt(k))
+			     {
+				    count2++;
+				    i++;
+				    k++;
+				
+				   if(count2==length2)
+				   {
+					flag2=true;
+					k=0;
+				   }
+				
+			    }	
+				
+			}
+			else
+			{	
+				i++;
+			
+			}
+			
+			
+		}
+		
+		
+		if(flag1==true || flag2==true)
+		{
+			System.out.println("String "+thirdInput+"is interleaving");
+		}
+		else
+		{
+			System.out.println("String "+thirdInput+"is not  interleaving");
+		}
+	}
+
+
+
+	private static void getInput() {
+		System.out.println("enter First String");
+		firstInput=sc.next();
+		System.out.println("enter Second String");
+		secondInput=sc.next();
+		System.out.println("enter Third String");
+		thirdInput=sc.next();
+	}
+
+	
+}
